@@ -1,0 +1,16 @@
+{
+  "name": "ant-misuan-website",
+  "version": "1.0.0",
+  "description": "蚂蚁密算官方网站",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8080",
+    "build": "echo 'Static website - no build required'",
+    "preview": "python -m http.server 8080"
+  },
+  "keywords": ["privacy-computing", "secretflow", "ant-misuan", "website"],
+  "author": "蚂蚁密算科技有限公司",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

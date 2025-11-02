@@ -1,0 +1,35 @@
+蚂蚁密算官网物料获取报告
+生成时间：2025-11-01 22:32
+
+镜像结果：
+- 蚂蚁密算官网 (misuan.com)：✅ 成功
+- SecretFlow官网 (secretflow.apache.org)：❌ 失败（DNS解析问题）
+
+文件统计：
+- 总文件数量：5个文件
+- misuan.com: 1个文件（index.html，14.8KB）
+- test: 1个文件（index.html，514B）
+- 物料获取根目录：3个文件（index.html，backblue.gif，fade.gif）
+
+详细文件列表：
+1. 物料获取/index.html (4.9KB)
+2. 物料获取/backblue.gif (4.2KB)
+3. 物料获取/fade.gif (828B)
+4. 物料获取/misuan.com/index.html (14.8KB)
+5. 物料获取/test/index.html (514B)
+
+镜像问题分析：
+1. 蚂蚁密算官网：成功下载首页，但未深度抓取子页面和资源
+2. SecretFlow官网：DNS解析失败，无法访问
+
+建议的解决方案：
+1. 使用更强大的网站镜像工具（如HTTrack GUI版本）
+2. 检查网络DNS设置
+3. 尝试使用代理访问SecretFlow官网
+4. 使用浏览器扩展手动保存关键页面
+
+下一步操作：
+1. 检查下载的蚂蚁密算官网首页内容
+2. 尝试其他方法获取SecretFlow官网内容
+3. 使用浏览器扩展补充获取更多物料
+4. 开始整理和分类已获取的物料

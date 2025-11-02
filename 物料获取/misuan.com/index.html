@@ -1,0 +1,218 @@
+<!DOCTYPE html><html><head><script>window.injectInfo = { appName: "misuan-portal", env: "PROD" };</script><script>window.publicPath = window.__basement_public_path__ = "https://gw.alipayobjects.com/render/p/yuyan/180020010001271069/";</script><script>!function(){var e=window;function n(n){if(e.g_monitor&&e.g_monitor.events){var t=e.g_monitor.events;t.length<20&&t.push(n)}}e.g_monitor=e.g_monitor||{listener:{},events:[]};var r=e.g_monitor.listener;function t(t,n){try{e.addEventListener?e.addEventListener(t,n,!0):e.attachEvent?e.attachEvent("on"+t,n):e[t]=n,r[t]=n}catch(n){console.warn("Tracert 监控事件注册失败："+t,n)}}r.error||t("error",n),r.unhandledrejection||t("unhandledrejection",n)}();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta property="og:image" content="https://mdn.alipayobjects.com/huamei_ybzr4e/afts/img/UoY-SrDvwDYAAAAAAAAAAAAADscOAQFr/original">
+<meta property="og:description" content="以密态计算技术创新应用及开源社区共建，赋能可信数据要素基础设施流通建设">
+<meta name="baidu-site-verification" content="codeva-z7hSz8fEWa">
+<meta name="bm_app_id" content="null">
+<meta name="bm_sprint_id" content="S090011346754">
+<meta name="data-aspm" content="a4673">
+<meta name="data-bizType" content="common">
+<link rel="shortcut icon" href="https://mdn.alipayobjects.com/huamei_ybzr4e/afts/img/UoY-SrDvwDYAAAAAAAAAAAAADscOAQFr/original">
+<title>蚂蚁密算</title>
+<link rel="stylesheet" href="https://gw.alipayobjects.com/render/p/yuyan/180020010001271069/umi.97ce4887.css">
+<script charset="utf-8">
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?e81165d0f3b48e11cd9c69c1b7a3f73a";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+        })();</script>
+<script>// prettier-ignore
+!function(n,o,e,t,a,i){n.yuyanMonitor={config: function(){}, logError: function() {}, log: function(){}};var r=o.createElement("script"),c=o.querySelector("head").getElementsByTagName("script")[0];
+      r.async=1,r.src="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_yuyan-monitor-sdk/1.3.0/dist/index.umd.min.js",r.crossOrigin="anonymous",r.onload=function(){
+        YuyanMonitor&&(n.yuyanMonitor=new YuyanMonitor({"_appId":"180020010001271069","yuyanId":"180020010001271069","sprintId":"S090011346754","isH5":false}));n.injectInfo && n.yuyanMonitor.config({ env: n.injectInfo.env })},o.querySelector("head").insertBefore(r,c)}(window,window.document)</script>
+<script>
+  !function(src) {
+    var _windowVM__TERN__;
+    function assignProperty(target, k, v) {
+      if (target.hasOwnProperty(k) && target[k] !== undefined) return;
+      if (v === undefined) return;
+      target[k] = v;
+    }
+    window._to = {};
+    if ((_windowVM__TERN__ = window.__TERN__) !== null && _windowVM__TERN__ !== void 0 && (_windowVM__TERN__ = _windowVM__TERN__.user) !== null && _windowVM__TERN__ !== void 0 && (_windowVM__TERN__ = _windowVM__TERN__.clientUser) !== null && _windowVM__TERN__ !== void 0 && _windowVM__TERN__.userId) {
+      window._to.role_id = window.__TERN__.user.clientUser.userId;
+    }
+    window._to.yuyanId=180020010001271069;
+    window._to._isPrimaryApp=true;
+    assignProperty(window._to, 'spmAPos', "a4673");
+assignProperty(window._to, 'bizType', "common");
+assignProperty(window._to, 'autoExpo', true);
+assignProperty(window._to, 'ifRouterNeedPv', true);
+assignProperty(window._to, 'autoLogPv', false);
+
+    
+  (function loader() {
+    if (Object.prototype.toString.call(window.TracertCmdCache) === '[object Array]') {
+      window.TracertCmdCache = [];
+    }
+    var Tracert = {
+      _isInit: true,
+      _readyToRun: [],
+      // 生成uuid
+      _guid: function _guid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = Math.random() * 16 | 0;
+          var v = c === 'x' ? r : r & 0x3 | 0x8;
+          return v.toString(16);
+        });
+      },
+      get: function get(key) {
+        if (key === 'pageId') {
+          window._tracert_loader_cfg = window._tracert_loader_cfg || {};
+          if (window._tracert_loader_cfg.pageId) {
+            return window._tracert_loader_cfg.pageId;
+          }
+          var metaa = document.querySelectorAll('meta[name=data-aspm]');
+          var spma = metaa && metaa[0] && metaa[0].getAttribute('content');
+          var spmb = document.body && document.body.getAttribute('data-aspm');
+          var pageId = spma && spmb ? "".concat(spma, ".").concat(spmb, "_").concat(Tracert._guid(), "_").concat(Date.now()) : "-_".concat(Tracert._guid(), "_").concat(Date.now());
+          window._tracert_loader_cfg.pageId = pageId;
+          return pageId;
+        }
+        return this[key];
+      },
+      call: function call() {
+        var args = arguments;
+        var argsList;
+        try {
+          argsList = [].slice.call(args, 0);
+        } catch (ex) {
+          var argsLen = args.length;
+          argsList = [];
+          for (var i = 0; i < argsLen; i++) {
+            argsList.push(args[i]);
+          }
+        }
+        Tracert.addToRun(function () {
+          Tracert.call.apply(Tracert, argsList);
+        });
+      },
+      addToRun: function addToRun(_fn) {
+        var fn = _fn;
+        if (typeof fn === 'function') {
+          fn._logTimer = new Date() - 0;
+          Tracert._readyToRun.push(fn);
+        }
+      },
+      createTracert: undefined,
+      spmAPos: undefined,
+      autoLogPv: undefined,
+      autoExpo: undefined,
+      bizType: undefined,
+      ifRouterNeedPv: undefined,
+      enableMicroAppInstance: undefined,
+      v: undefined
+    };
+    var fnlist = ['config', 'logPv', 'info', 'error', 'click', 'expo', 'pageName', 'pageState', 'time', 'timeEnd', 'parse', 'expoCheck', 'stringify', 'report', 'set', 'before'];
+    for (var i = 0; i < fnlist.length; i++) {
+      var fn = fnlist[i];
+      (function (fn) {
+        Tracert[fn] = function () {
+          var args = arguments;
+          var argsList;
+          try {
+            argsList = [].slice.call(args, 0);
+          } catch (ex) {
+            var argsLen = args.length;
+            argsList = [];
+            for (var _i2 = 0; _i2 < argsLen; _i2++) {
+              argsList.push(args[_i2]);
+            }
+          }
+          argsList.unshift(fn);
+          Tracert.addToRun(function () {
+            Tracert.call.apply(Tracert, argsList);
+          });
+        };
+      })(fn);
+    }
+    if (window.Proxy) {
+      var handler = {
+        get: function get(target, property) {
+          var _targetVMhasOwnPropert;
+          if (target !== null && target !== void 0 && (_targetVMhasOwnPropert = target.hasOwnProperty) !== null && _targetVMhasOwnPropert !== void 0 && _targetVMhasOwnPropert.call(target, property)) {
+            return target[property];
+          }
+          return target.call.bind(this, property);
+        }
+      };
+      var proxyTracert = new window.Proxy(Tracert, handler);
+      window.Tracert = proxyTracert;
+    } else {
+      window.Tracert = Tracert;
+    }
+  })();
+
+
+    var _windowVMdocument, _windowVMdocumentVMcrea;
+    var curScript = (_windowVMdocument = window.document) === null || _windowVMdocument === void 0 || (_windowVMdocumentVMcrea = _windowVMdocument.createElement) === null || _windowVMdocumentVMcrea === void 0 ? void 0 : _windowVMdocumentVMcrea.call(_windowVMdocument, 'script');
+    if (!curScript) return;
+    curScript.async = true;
+    var _windowVMdocumentVMquer, _documentVMquerySelect;
+    curScript.crossOrigin = 'anonymous';
+    curScript.src = src;
+    var insertScript = ((_windowVMdocumentVMquer = window.document.querySelector('head')) === null || _windowVMdocumentVMquer === void 0 ? void 0 : _windowVMdocumentVMquer.getElementsByTagName('script')[0]) || null;
+    if (!insertScript) return;
+    (_documentVMquerySelect = document.querySelector('head')) === null || _documentVMquerySelect === void 0 ? void 0 : _documentVMquerySelect.insertBefore(curScript, insertScript);
+    curScript.onerror = function () {
+      console.warn("[Bigfish] Tracert script load error, please check your network and spma.");
+      var fallback = function fallback() {
+        console.warn("[Bigfish] Tracert run error, please make sure the script import right.");
+      };
+      var fnlist = ["call", "start", "config", "logPv", "info", "err", "click", "expo", "pageName", "pageState", "time", "timeEnd", "parse", "checkExpo", "stringify", "report", "set", "before"];
+      if (Object.prototype.toString.call(window.Tracert) != '[object Object]') {
+        window.Tracert = {};
+      }
+      for (var i = 0; i < fnlist.length; i++) {
+        window.Tracert[fnlist[i]] = fallback;
+      }
+    };
+  }('https://ur.alipay.com/tracert_a4673.js');
+</script>
+<script type="umi-route-chunk-files-map">{"p":"misuan-portal","b":"webpack","f":[["284.1ec4d149.async.js",284],["538.0648d736.async.js",538],["p__secretflow-cloud__all-in-one-pc__index.25e006e8.chunk.css",710],["p__secretflow-cloud__all-in-one-pc__index.bdf9e466.async.js",710],["1033.14886a9f.async.js",1033],["p__secretflow-cloud__large-language-model__index.20700ede.chunk.css",1537],["p__secretflow-cloud__large-language-model__index.42c89d01.async.js",1537],["1630.05554ae3.async.js",1630],["layouts__index.2fe51514.chunk.css",1717],["layouts__index.c09a3a1b.async.js",1717],["1721.b7fc3ebb.async.js",1721],["1809.8f4a6272.async.js",1809],["p__baidu_verify_code__index.5b1126c1.async.js",1980],["2453.fd0236f4.async.js",2453],["p__asterinas__community__index.f2e20cab.chunk.css",2461],["p__asterinas__community__index.a58be8cb.async.js",2461],["p__404.b7614e58.async.js",2571],["p__secretflow-cloud__laptop__index.25e006e8.chunk.css",3046],["p__secretflow-cloud__laptop__index.22271ff9.async.js",3046],["3102.74e3a55b.async.js",3102],["3166.ee8b3d90.async.js",3166],["p__about-us__index.25e006e8.chunk.css",3500],["p__about-us__index.09ca23b0.async.js",3500],["p__secretflow-cloud__big-data__index.f056e5f2.chunk.css",4132],["p__secretflow-cloud__big-data__index.52509e84.async.js",4132],["4256.2ef76d4b.async.js",4256],["p__welcome__index.84b277d9.chunk.css",4446],["p__welcome__index.518a0de4.async.js",4446],["4482.d9f05db9.async.js",4482],["4677.6ece70a5.async.js",4677],["4974.bb10b227.async.js",4974],["p__solution__index.441aa626.chunk.css",5180],["p__solution__index.b21940c3.async.js",5180],["p__secretflow-cloud__data-space__index.25e006e8.chunk.css",5598],["p__secretflow-cloud__data-space__index.95355c7b.async.js",5598],["p__asterinas__index.f411e612.async.js",5962],["6390.54a05af6.async.js",6390],["6531.f422a545.async.js",6531],["6652.e73d11a7.async.js",6652],["6890.715f1322.async.js",6890],["p__secretflow-cloud__knowledge-base__index.be48136b.chunk.css",7172],["p__secretflow-cloud__knowledge-base__index.245a8d3e.async.js",7172],["7221.5bea12e3.async.js",7221],["p__file-download-preview__index.576ce40c.async.js",7313],["p__secretflow-cloud__index.aed76f48.async.js",8179],["p__docs__index.1e2b7765.chunk.css",8287],["p__docs__index.e3b1b106.async.js",8287],["p__contact-us__index.fc15febb.chunk.css",8504],["p__contact-us__index.723149c1.async.js",8504],["9111.1a13a2d5.async.js",9111],["p__file-download__index.7e2c28b7.async.js",9113],["9219.3f3f7347.async.js",9219],["9386.f717a7b5.async.js",9386]],"r":{"/*":[16,4,8,9,11,28,30,49,52],"/":[4,7,10,13,25,26,27,28,29,38,39,49,51,8,9,11,30,52],"/baidu_verify_codeva-z7hSz8fEWa.html":[12,4,8,9,11,28,30,49,52],"/secretflow-cloud":[44,4,8,9,11,28,30,49,52],"/asterinas":[35,4,8,9,11,28,30,49,52],"/file-download":[50,4,8,9,11,28,30,49,52],"/solution":[13,25,31,32,38,42,49,4,8,9,11,28,30,52],"/about-us":[7,13,21,22,28,29,38,49,51,4,8,9,11,30,52],"/contact-us":[0,4,11,13,19,25,28,29,38,39,47,48,49,51,8,9,30,52],"/:locale/docs/*":[0,1,4,11,28,29,30,38,45,46,49,52,8,9],"/secretflow-cloud/large-language-model":[5,6,20,25,49,44,4,8,9,11,28,30,52],"/secretflow-cloud/knowledge-base":[25,40,41,49,44,4,8,9,11,28,30,52],"/secretflow-cloud/big-data":[20,23,24,25,49,44,4,8,9,11,28,30,52],"/secretflow-cloud/data-space":[7,13,25,28,29,33,34,38,49,51,44,4,8,9,11,30,52],"/secretflow-cloud/all-in-one-pc":[2,3,13,25,28,29,37,38,42,49,51,44,4,8,9,11,30,52],"/secretflow-cloud/laptop":[13,17,18,25,28,29,37,38,49,51,44,4,8,9,11,30,52],"/asterinas/community":[13,14,15,25,38,49,35,4,8,9,11,28,30,52],"/file-download/file":[43],"/zh-CN/docs/":[0,1,4,11,28,29,30,38,45,46,49,52,8,9]}}</script>
+
+    <meta name="yuyan_id" content="180020010001271069">
+    <meta name="bm_sprint_id" content="S090011346754">
+
+    <script>
+      !function(){var e=window;function n(n){if(e.g_monitor&&e.g_monitor.events){var t=e.g_monitor.events;t.length<20&&t.push(n)}}e.g_monitor=e.g_monitor||{listener:{},events:[]};var r=e.g_monitor.listener;function t(t,n){try{e.addEventListener?e.addEventListener(t,n,!0):e.attachEvent?e.attachEvent("on"+t,n):e[t]=n,r[t]=n}catch(n){console.warn("Tracert 监控事件注册失败："+t,n)}}r.error||t("error",n),r.unhandledrejection||t("unhandledrejection",n)}();
+    </script>
+    <script>
+      (function (window, document) {
+      window.yuyanCmdCache = [];
+      window.yuyanMonitor = {
+        config: function () {},
+        logError: function () {},
+        log: function () { window.yuyanCmdCache.push(arguments); }
+      };
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://gw.alipayobjects.com/os/lib/alipay/yuyan-monitor-sdk/1.1.0/dist/index.umd.min.js';
+      script.crossOrigin = "anonymous";
+      script.onload = function () {
+        if (YuyanMonitor) {
+          window.yuyanMonitor = new YuyanMonitor({ yuyanId: "180020010001271069" });
+          if (window.yuyanCmdCache.length) {
+            for (let i = 0; i < window.yuyanCmdCache.length; i++) {
+              window.yuyanMonitor.log.apply(window.yuyanMonitor, window.yuyanCmdCache[i]);
+            }
+            window.yuyanCmdCache.length = 0;
+          }
+        }
+      }
+      var insertAnchor = document.getElementsByTagName('script')[0];
+      if (insertAnchor.parentNode) {
+        insertAnchor.parentNode.insertBefore(script, insertAnchor);
+      }
+    })(window, window.document);
+    </script>
+  </head>
+<body>
+<div id="root"></div>
+<script src="https://gw.alipayobjects.com/render/p/yuyan/180020010001271069/umi.c682b8bc.js" crossorigin="anonymous"></script>
+
+</body></html>

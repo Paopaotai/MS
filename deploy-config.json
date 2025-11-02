@@ -1,0 +1,35 @@
+{
+  "project": {
+    "name": "ant-misuan-website",
+    "description": "蚂蚁密算官方网站",
+    "version": "1.0.0"
+  },
+  "deployment": {
+    "type": "static-website",
+    "port": 8080,
+    "server": "python-http-server",
+    "requirements": ["python3"]
+  },
+  "features": {
+    "responsive": true,
+    "mobile-friendly": true,
+    "seo-optimized": true,
+    "fast-loading": true
+  },
+  "urls": {
+    "preview": "http://localhost:8080",
+    "production": "待部署后生成"
+  },
+  "cloud-deployment": {
+    "platform": "CloudStudio",
+    "description": "一键部署到云端，支持手机流量访问",
+    "features": [
+      "公网访问地址",
+      "移动端优化",
+      "HTTPS支持",
+      "自动扩缩容"
+    ],
+    "mobile-support": true,
+    "public-access": true
+  }
+}
