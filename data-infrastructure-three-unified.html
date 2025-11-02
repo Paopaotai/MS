@@ -113,6 +113,58 @@
       .table-responsive table {
         min-width: 800px;
       }
+      .table-container {
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+      .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .table-container th {
+        background: #f8f9fa;
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+      }
+      .table-container td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .table-container tr:hover {
+        background: #f8f9fa;
+      }
+      .table-container {
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+      .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .table-container th {
+        background: #f8f9fa;
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+      }
+      .table-container td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .table-container tr:hover {
+        background: #f8f9fa;
+      }
     }
   </style>
 </head>
@@ -123,217 +175,312 @@
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
         <div class="flex items-center">
-          <i class="fa fa-shield text-primary text-2xl mr-2"></i>
           <span class="text-xl font-semibold text-primary">蚂蚁密算</span>
         </div>
-        
-        <!-- 桌面端导航菜单 -->
-        <div class="hidden lg:flex items-center space-x-8">
-          <a href="index.html" class="nav-link">首页</a>
-          
-          <!-- 产品与服务下拉菜单 -->
+
+        <!-- 桌面端导航 -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <!-- 产品与服务 -->
           <div class="dropdown relative">
-            <button class="nav-link flex items-center">
+            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
               产品与服务
               <i class="fa fa-chevron-down ml-1 text-xs"></i>
             </button>
-            <div class="dropdown-menu absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-neutral-200 py-2 z-50">
-              <a href="trusted-data-space.html" class="dropdown-item block px-4 py-2 text-neutral-700 hover:bg-neutral-50">
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <div class="px-4 py-2 text-xs text-neutral-500 font-medium">产品</div>
+              <a href="trusted-data-space.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
                 <i class="fa fa-database mr-2 text-primary"></i>可信数据空间
               </a>
-              <a href="data-element.html" class="dropdown-item block px-4 py-2 text-neutral-700 hover:bg-neutral-50">
+              <a href="data-element.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
                 <i class="fa fa-cube mr-2 text-info"></i>数据元件
               </a>
-              <a href="data-infrastructure-three-unified.html" class="dropdown-item active block px-4 py-2 hover:bg-neutral-50">
-                <i class="fa fa-sitemap mr-2 text-success"></i>数据基础设施三统一
+              <a href="#big-data-platform" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-cloud mr-2 text-success"></i>大数据密算平台
+              </a>
+              <a href="#ai-platform" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-robot mr-2 text-warning"></i>大模型密算平台
+              </a>
+              <a href="#secretflow-standard" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-shield mr-2 text-danger"></i>隐语标准版
+              </a>
+              
+              <div class="border-t border-neutral-200 mt-2 pt-2">
+                <div class="px-4 py-2 text-xs text-neutral-500 font-medium">服务</div>
+                <a href="#data-component" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                  <i class="fa fa-cube mr-2 text-secondary"></i>数据元件服务
+                </a>
+                <a href="data-infrastructure-three-unified.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
+                  <i class="fa fa-server mr-2 text-info"></i>数据基础设施"三统一"
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 解决方案 -->
+          <div class="dropdown relative">
+            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
+              解决方案
+              <i class="fa fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <a href="#finance" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-bank mr-2 text-primary"></i>金融行业
+              </a>
+              <a href="#healthcare" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-heart mr-2 text-danger"></i>医疗健康
+              </a>
+              <a href="#government" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-building mr-2 text-warning"></i>政务治理
+              </a>
+              <a href="#internet" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">
+                <i class="fa fa-globe mr-2 text-success"></i>互联网服务
               </a>
             </div>
           </div>
-          
-          <a href="#solutions" class="nav-link">行业解决方案</a>
-          <a href="#docs" class="nav-link">技术文档</a>
-          <a href="#training" class="nav-link">实训课程</a>
-          <a href="#community" class="nav-link">生态与社区</a>
+
+          <!-- 开源平台 -->
+          <a href="#opensource" class="nav-link text-neutral-600 hover:text-primary">开源平台</a>
+
+          <!-- 生态与社区 -->
+          <a href="#ecosystem" class="nav-link text-neutral-600 hover:text-primary">生态与社区</a>
+
+          <!-- 资源中心 -->
+          <div class="dropdown relative">
+            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
+              资源中心
+              <i class="fa fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <a href="#getting-started" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">入门指南</a>
+              <a href="#api-docs" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">API文档</a>
+              <a href="#tutorials" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">技术教程</a>
+              <a href="#best-practices" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">最佳实践</a>
+              <a href="#demo" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">DEMO演示</a>
+              <a href="#training" class="block px-4 py-2 text-sm hover:bg-neutral-50 building-item">培训课程</a>
+              <div class="border-t border-neutral-200 mt-2 pt-2">
+                <a href="#all-resources" class="block px-4 py-2 text-sm text-primary hover:bg-neutral-50">
+                  <i class="fa fa-book mr-2"></i>资源中心
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 关于我们 -->
+          <a href="#about" class="nav-link text-neutral-600 hover:text-primary">关于我们</a>
+        </nav>
+
+        <!-- 用户操作区域 -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="#login" class="text-neutral-600 hover:text-primary nav-link">登录</a>
+          <a href="#register" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+            免费注册
+          </a>
         </div>
-        
+
         <!-- 移动端菜单按钮 -->
-        <button class="lg:hidden text-neutral-600 hover:text-primary">
+        <button id="mobile-menu-button" class="lg:hidden text-neutral-600 hover:text-primary">
           <i class="fa fa-bars text-xl"></i>
         </button>
+      </div>
+    </div>
+
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-md">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <div class="px-3 py-2">
+          <div class="text-sm font-medium text-neutral-500 mb-2">产品与服务</div>
+          <div class="space-y-1 ml-2">
+            <div class="text-xs text-neutral-400 font-medium mb-1">产品</div>
+            <a href="trusted-data-space.html" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm">可信数据空间</a>
+            <a href="data-element.html" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm">数据元件</a>
+            <a href="#big-data-platform" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">大数据密算平台</a>
+            <a href="#ai-platform" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">大模型密算平台</a>
+            <a href="#secretflow-standard" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">隐语标准版</a>
+            
+            <div class="text-xs text-neutral-400 font-medium mb-1 mt-2">服务</div>
+            <a href="#data-component" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">数据元件服务</a>
+            <a href="data-infrastructure-three-unified.html" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm">数据基础设施"三统一"</a>
+          </div>
+        </div>
+        
+        <div class="px-3 py-2">
+          <div class="text-sm font-medium text-neutral-500 mb-2">解决方案</div>
+          <div class="space-y-1 ml-2">
+            <a href="#finance" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">金融行业</a>
+            <a href="#healthcare" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">医疗健康</a>
+            <a href="#government" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">政务治理</a>
+            <a href="#internet" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">互联网服务</a>
+          </div>
+        </div>
+        
+        <a href="#opensource" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md">开源平台</a>
+        
+        <a href="#ecosystem" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md">生态与社区</a>
+        
+        <div class="px-3 py-2">
+          <div class="text-sm font-medium text-neutral-500 mb-2">资源中心</div>
+          <div class="space-y-1 ml-2">
+            <a href="#getting-started" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">入门指南</a>
+            <a href="#api-docs" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">API文档</a>
+            <a href="#tutorials" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">技术教程</a>
+            <a href="#best-practices" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">最佳实践</a>
+            <a href="#demo" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">DEMO演示</a>
+            <a href="#training" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md text-sm building-item">培训课程</a>
+          </div>
+        </div>
+        
+        <a href="#about" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md">关于我们</a>
+        
+        <div class="border-t border-neutral-200 pt-3 mt-3">
+          <a href="#login" class="block px-3 py-2 text-neutral-600 hover:bg-primary/10 hover:text-primary rounded-md">登录</a>
+          <a href="#register" class="block px-3 py-2 bg-primary text-white rounded-md hover:bg-primary/90 text-center mt-2">
+            免费注册
+          </a>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- 页面内容 -->
-  <main class="min-h-screen">
-    <!-- 页面标题和概述 -->
-    <section class="bg-gradient-to-br from-primary/5 to-secondary/5 py-16">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            <i class="fa fa-sitemap mr-2"></i>
-            数据基础设施
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 mb-6 fade-in">
-            数据基础设施"三统一"技术体系
-          </h1>
-          <p class="text-xl text-neutral-600 mb-8 fade-in stagger-delay-1">
-            构建统一身份登记、统一目录标识、统一接口要求的技术体系，
-            保障隐语生态与国家数据基础设施互联互通
-          </p>
-          <div class="flex flex-wrap justify-center gap-4 fade-in stagger-delay-2">
-            <div class="flex items-center bg-white rounded-lg px-4 py-3 shadow-sm">
-              <i class="fa fa-id-card text-primary mr-2"></i>
-              <span class="font-medium">统一身份登记</span>
-            </div>
-            <div class="flex items-center bg-white rounded-lg px-4 py-3 shadow-sm">
-              <i class="fa fa-folder text-success mr-2"></i>
-              <span class="font-medium">统一目录标识</span>
-            </div>
-            <div class="flex items-center bg-white rounded-lg px-4 py-3 shadow-sm">
-              <i class="fa fa-plug text-warning mr-2"></i>
-              <span class="font-medium">统一接口要求</span>
-            </div>
-          </div>
-        </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-primary/80 py-20 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 fade-in">数据基础设施"三统一"</h1>
+        <p class="text-xl opacity-90 max-w-3xl mx-auto fade-in stagger-delay-1">构建统一身份登记、统一目录标识、统一接口要求的技术体系，保障隐语生态与国家数据基础设施互联互通</p>
       </div>
     </section>
 
-    <!-- 文档基础信息 -->
-    <section class="py-12 bg-white" id="basic-info">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">一、文档基础信息</h2>
-          <div class="bg-neutral-50 rounded-lg p-6">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 class="font-semibold text-neutral-700 mb-3">文档归属</h3>
-                <p class="text-neutral-600">隐语社区数据基础设施系列技术文档，前序关联文档为《数据元件技术规范》</p>
-              </div>
-              <div>
-                <h3 class="font-semibold text-neutral-700 mb-3">核心依据</h3>
-                <p class="text-neutral-600">《国家数据基础设施建设指引》《国家数据基础设施建设技术文件》</p>
-              </div>
-              <div>
-                <h3 class="font-semibold text-neutral-700 mb-3">适用对象</h3>
-                <p class="text-neutral-600">隐语密算平台、接入连接器（接入终端）、数据提供方、数据使用方</p>
-              </div>
-              <div>
-                <h3 class="font-semibold text-neutral-700 mb-3">网页支持</h3>
-                <p class="text-neutral-600">简体中文浏览、全文搜索、章节跳转（含"上一页/下一页"关联导航）</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 整体概述 -->
-    <section class="py-12 bg-neutral-50" id="overview">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">二、"三统一"整体概述</h2>
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <p class="text-lg text-neutral-700 mb-6">
-              隐语社区以国家数据基础设施相关文件为依据，构建"<strong>统一身份登记、统一目录标识、统一接口要求</strong>"的"三统一"技术体系，
-              核心目标为解决数据跨域、跨行业流通中的"身份核验难、目录不统一、接口不兼容"问题。
-            </p>
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-              <div class="text-center p-6 bg-primary/5 rounded-lg">
-                <i class="fa fa-id-card-o text-3xl text-primary mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">统一身份登记</h3>
-                <p class="text-neutral-600 text-sm">解决身份核验难问题，确保接入主体身份可信</p>
-              </div>
-              <div class="text-center p-6 bg-success/5 rounded-lg">
-                <i class="fa fa-folder-open text-3xl text-success mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">统一目录标识</h3>
-                <p class="text-neutral-600 text-sm">解决目录不统一问题，实现数据资源标准化管理</p>
-              </div>
-              <div class="text-center p-6 bg-warning/5 rounded-lg">
-                <i class="fa fa-exchange text-3xl text-warning mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">统一接口要求</h3>
-                <p class="text-neutral-600 text-sm">解决接口不兼容问题，保障跨主体交互顺畅</p>
-              </div>
+
+    <!-- 核心概念 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">"三统一"技术体系核心价值</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg p-6 shadow-sm card-hover fade-in stagger-delay-1">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-id-card text-primary text-2xl"></i>
             </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">统一身份登记</h3>
+            <p class="text-neutral-600">解决身份核验难问题，确保接入主体身份可信，实现跨域身份互认</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm card-hover fade-in stagger-delay-2">
+            <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-folder-open text-success text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">统一目录标识</h3>
+            <p class="text-neutral-600">解决目录不统一问题，实现数据资源标准化管理，提升数据发现效率</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm card-hover fade-in stagger-delay-3">
+            <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-exchange text-warning text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">统一接口要求</h3>
+            <p class="text-neutral-600">解决接口不兼容问题，保障跨主体交互顺畅，降低集成成本</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 统一身份登记 -->
-    <section class="py-12 bg-white" id="identity-registration">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">三、（一）统一身份登记：主体、平台与数据的标识管理</h2>
-          
-          <!-- 身份标识体系规范 -->
-          <div class="mb-12">
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">1. 身份标识体系规范</h3>
-            <div class="table-responsive">
-              <table class="w-full border-collapse border border-neutral-200">
-                <thead>
-                  <tr class="bg-neutral-50">
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">标识类型</th>
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">编码规则</th>
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">覆盖范围</th>
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">分配主体</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">主体标识码</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">18位结构化编码（采用统一社会信用代码、身份证号等）</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">法人/非法人组织、自然人、其他类型主体</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">国家可信身份权威机构</td>
-                  </tr>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">平台标识码</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">32位编码</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">全域功能节点、区域/行业功能节点、密算平台（业务节点）、接入连接器</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">区域/行业功能节点</td>
-                  </tr>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据相关编码</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">32-65位（含1-32位扩展码）</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据产品、数据资源</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">区域/行业功能节点</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">统一身份登记体系</h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">构建主体、平台与数据的统一标识管理体系，确保接入身份可信</p>
+        </div>
 
-          <!-- 登记实现流程 -->
-          <div>
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">2. 登记实现流程</h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">1</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">身份注册与获取</h4>
-                  <p class="text-neutral-600">数据提供方、数据使用方（接入主体）可通过密算平台或区域/行业功能节点注册；接入连接器（接入终端）需通过区域/行业功能节点注册，获取对应标识码。</p>
-                </div>
+        <!-- 标识体系规范 -->
+        <div class="mb-16 fade-in stagger-delay-1">
+          <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">标识体系规范</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>标识类型</th>
+                  <th>编码规则</th>
+                  <th>覆盖范围</th>
+                  <th>分配主体</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>主体标识码</td>
+                  <td>18位结构化编码（采用统一社会信用代码、身份证号等）</td>
+                  <td>法人/非法人组织、自然人、其他类型主体</td>
+                  <td>国家可信身份权威机构</td>
+                </tr>
+                <tr>
+                  <td>平台标识码</td>
+                  <td>32位编码</td>
+                  <td>全域功能节点、区域/行业功能节点、密算平台（业务节点）、接入连接器</td>
+                  <td>区域/行业功能节点</td>
+                </tr>
+                <tr>
+                  <td>数据相关编码</td>
+                  <td>32-65位（含1-32位扩展码）</td>
+                  <td>数据产品、数据资源</td>
+                  <td>区域/行业功能节点</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 登记实现流程 -->
+        <div class="fade-in stagger-delay-2">
+          <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">登记实现流程</h3>
+          <div class="relative">
+            <!-- 时间线 -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+            
+            <!-- 阶段1 -->
+            <div class="flex items-center mb-12">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+                <span class="text-white font-bold">1</span>
               </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">2</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">真实性核验</h4>
-                  <p class="text-neutral-600">区域/行业功能节点对接可信身份凭证提供商颁发身份凭证，联动国家可信身份权威机构核验主体身份真实性。</p>
-                </div>
+              <div class="ml-8 bg-neutral-50 rounded-lg p-6 shadow-sm flex-1">
+                <h4 class="text-xl font-bold mb-2 text-neutral-800">身份注册与获取</h4>
+                <p class="text-neutral-600 mb-3">数据提供方、数据使用方（接入主体）可通过密算平台或区域/行业功能节点注册；接入连接器（接入终端）需通过区域/行业功能节点注册，获取对应标识码。</p>
               </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">3</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">可信接入管理</h4>
-                  <p class="text-neutral-600">接入连接器需通过密算平台实现接入，密算平台与区域/行业功能节点对接，确保接入终端身份可信。</p>
-                </div>
+            </div>
+
+            <!-- 阶段2 -->
+            <div class="flex items-center mb-12">
+              <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center z-10">
+                <span class="text-white font-bold">2</span>
               </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">4</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">接口流程标准</h4>
-                  <p class="text-neutral-600">接入主体身份注册/注销/登录认证（账户口令、数字证书、DID登录）、跨域身份注册、接入器身份认证等流程，均遵循国家数据基础设施标准。</p>
-                </div>
+              <div class="ml-8 bg-neutral-50 rounded-lg p-6 shadow-sm flex-1">
+                <h4 class="text-xl font-bold mb-2 text-neutral-800">真实性核验</h4>
+                <p class="text-neutral-600 mb-3">区域/行业功能节点对接可信身份凭证提供商颁发身份凭证，联动国家可信身份权威机构核验主体身份真实性。</p>
+              </div>
+            </div>
+
+            <!-- 阶段3 -->
+            <div class="flex items-center mb-12">
+              <div class="w-8 h-8 bg-warning rounded-full flex items-center justify-center z-10">
+                <span class="text-white font-bold">3</span>
+              </div>
+              <div class="ml-8 bg-neutral-50 rounded-lg p-6 shadow-sm flex-1">
+                <h4 class="text-xl font-bold mb-2 text-neutral-800">可信接入管理</h4>
+                <p class="text-neutral-600 mb-3">接入连接器需通过密算平台实现接入，密算平台与区域/行业功能节点对接，确保接入终端身份可信。</p>
+              </div>
+            </div>
+
+            <!-- 阶段4 -->
+            <div class="flex items-center">
+              <div class="w-8 h-8 bg-danger rounded-full flex items-center justify-center z-10">
+                <span class="text-white font-bold">4</span>
+              </div>
+              <div class="ml-8 bg-neutral-50 rounded-lg p-6 shadow-sm flex-1">
+                <h4 class="text-xl font-bold mb-2 text-neutral-800">接口流程标准</h4>
+                <p class="text-neutral-600 mb-3">接入主体身份注册/注销/登录认证（账户口令、数字证书、DID登录）、跨域身份注册、接入器身份认证等流程，均遵循国家数据基础设施标准。</p>
               </div>
             </div>
           </div>
@@ -342,62 +489,63 @@
     </section>
 
     <!-- 统一目录标识 -->
-    <section class="py-12 bg-neutral-50" id="directory-identification">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">三、（二）统一目录标识：数据资源与产品的目录管理</h2>
-          
-          <!-- 目录标识体系规范 -->
-          <div class="mb-12">
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">1. 目录标识体系规范</h3>
-            <div class="table-responsive">
-              <table class="w-full border-collapse border border-neutral-200">
-                <thead>
-                  <tr class="bg-neutral-50">
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">目录类型</th>
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">核心字段</th>
-                    <th class="border border-neutral-200 px-4 py-3 text-left font-semibold text-neutral-700">生成与同步逻辑</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据资源目录</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">资源名称、数据资源标识码、行业分类、资源持有方、联系人、联系方式、资源摘要、资源格式</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">按国家数据基础设施目录描述规范定义，由数据提供方登记生成</td>
-                  </tr>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据产品目录-登记信息</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">基本信息（产品名称、类型、时间范围、行业分类）、提供方信息（名称、主体类型、身份标识码）、声明信息（样例、合规声明、来源声明、分类分级）</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据提供方通过区域/行业功能节点接口提交，生成唯一产品标识码</td>
-                  </tr>
-                  <tr class="hover:bg-neutral-50">
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">数据产品目录-上架信息</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">基本信息（产品标识码、上架节点信息）、定价信息（按次/按周期）、交付方式（文件/数据流/API交付）</td>
-                    <td class="border border-neutral-200 px-4 py-3 text-neutral-600">密算平台生成上架信息，调用接口同步至区域/行业功能节点，纳入国家全域目录</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">统一目录标识体系</h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">实现数据资源与产品的标准化目录管理，提升数据发现效率</p>
+        </div>
 
-          <!-- 标识实现流程 -->
-          <div>
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">2. 标识实现流程</h3>
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white rounded-lg p-6 shadow-sm">
-                <div class="flex items-center mb-4">
-                  <div class="w-10 h-10 bg-success text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">1</div>
-                  <h4 class="font-semibold text-neutral-800">数据登记与标识获取</h4>
-                </div>
-                <p class="text-neutral-600">数据提供方将数据资源/产品登记至国家数据基础设施（区域/行业功能节点），获取唯一数据标识。</p>
+        <!-- 目录标识体系规范 -->
+        <div class="mb-16 fade-in stagger-delay-1">
+          <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">目录标识体系规范</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>目录类型</th>
+                  <th>核心字段</th>
+                  <th>生成与同步逻辑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>数据资源目录</td>
+                  <td>资源名称、数据资源标识码、行业分类、资源持有方、联系人、联系方式、资源摘要、资源格式</td>
+                  <td>按国家数据基础设施目录描述规范定义，由数据提供方登记生成</td>
+                </tr>
+                <tr>
+                  <td>数据产品目录-登记信息</td>
+                  <td>基本信息（产品名称、类型、时间范围、行业分类）、提供方信息（名称、主体类型、身份标识码）、声明信息（样例、合规声明、来源声明、分类分级）</td>
+                  <td>数据提供方通过区域/行业功能节点接口提交，生成唯一产品标识码</td>
+                </tr>
+                <tr>
+                  <td>数据产品目录-上架信息</td>
+                  <td>基本信息（产品标识码、上架节点信息）、定价信息（按次/按周期）、交付方式（文件/数据流/API交付）</td>
+                  <td>密算平台生成上架信息，调用接口同步至区域/行业功能节点，纳入国家全域目录</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 标识实现流程 -->
+        <div class="fade-in stagger-delay-2">
+          <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">标识实现流程</h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-success text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">1</div>
+                <h4 class="text-xl font-bold text-neutral-800">数据登记与标识获取</h4>
               </div>
-              <div class="bg-white rounded-lg p-6 shadow-sm">
-                <div class="flex items-center mb-4">
-                  <div class="w-10 h-10 bg-success text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">2</div>
-                  <h4 class="font-semibold text-neutral-800">上架与信息同步</h4>
-                </div>
-                <p class="text-neutral-600">数据提供方将数据上架至密算数据流通平台，平台自动同步目录上架信息至区域/行业功能节点，确保数据在国家全域目录可查。</p>
+              <p class="text-neutral-600">数据提供方将数据资源/产品登记至国家数据基础设施（区域/行业功能节点），获取唯一数据标识。</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-success text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">2</div>
+                <h4 class="text-xl font-bold text-neutral-800">上架与信息同步</h4>
               </div>
+              <p class="text-neutral-600">数据提供方将数据上架至密算数据流通平台，平台自动同步目录上架信息至区域/行业功能节点，确保数据在国家全域目录可查。</p>
             </div>
           </div>
         </div>
@@ -405,15 +553,17 @@
     </section>
 
     <!-- 统一接口要求 -->
-    <section class="py-12 bg-white" id="interface-requirements">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">三、（三）统一接口要求：跨主体交互的接口标准</h2>
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">统一接口要求</h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">跨主体交互的标准化接口体系，保障数据流通顺畅</p>
+        </div>
           
           <!-- 接口规范分类 -->
-          <div class="mb-12">
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">1. 接口规范分类</h3>
-            <p class="text-neutral-600 mb-6">所有接口均采用国家数据基础设施规定标准，按交互主体分为三类：</p>
+          <div class="mb-16 fade-in stagger-delay-1">
+            <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">接口规范分类</h3>
+            <p class="text-lg text-neutral-600 mb-8 text-center max-w-3xl mx-auto">所有接口均采用国家数据基础设施规定标准，按交互主体分为三类：</p>
             
             <div class="space-y-6">
               <!-- 第一类接口 -->
@@ -497,37 +647,37 @@
           </div>
 
           <!-- 接口实现与数据流通流程 -->
-          <div>
-            <h3 class="text-xl font-semibold text-neutral-800 mb-6">2. 接口实现与数据流通流程</h3>
-            <div class="bg-neutral-50 rounded-lg p-6">
-              <div class="flex items-start mb-4">
-                <div class="flex-shrink-0 w-8 h-8 bg-warning text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">1</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">接口标准化落地</h4>
-                  <p class="text-neutral-600">上述所有接口严格遵循国家数据基础设施技术要求开发与对接，确保跨主体兼容。</p>
+          <div class="fade-in stagger-delay-2">
+            <h3 class="text-2xl font-bold mb-8 text-neutral-800 text-center">接口实现与数据流通流程</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-warning text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">1</div>
+                  <h4 class="text-xl font-bold text-neutral-800">接口标准化落地</h4>
                 </div>
+                <p class="text-neutral-600">上述所有接口严格遵循国家数据基础设施技术要求开发与对接，确保跨主体兼容。</p>
               </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-8 h-8 bg-warning text-white rounded-full flex items-center justify-center text-sm font-semibold mr-4 mt-1">2</div>
-                <div>
-                  <h4 class="font-semibold text-neutral-800 mb-2">数据流通优化流程</h4>
-                  <div class="space-y-3 mt-3">
-                    <div class="flex items-center">
-                      <span class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">①</span>
-                      <span class="text-neutral-600">数据使用方通过国家数据基础设施查询目标数据</span>
-                    </div>
-                    <div class="flex items-center">
-                      <span class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">②</span>
-                      <span class="text-neutral-600">向密算平台发起数据流通请求</span>
-                    </div>
-                    <div class="flex items-center">
-                      <span class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">③</span>
-                      <span class="text-neutral-600">密算平台向数据提供方、使用方发送交互指令</span>
-                    </div>
-                    <div class="flex items-center">
-                      <span class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">④</span>
-                      <span class="text-neutral-600">双方按指令选择密算云（集中式）或隐语终端（点对点）完成数据流通</span>
-                    </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">2</div>
+                  <h4 class="text-xl font-bold text-neutral-800">数据流通优化流程</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">1</div>
+                    <span class="text-neutral-600">数据使用方通过国家数据基础设施查询目标数据</span>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">2</div>
+                    <span class="text-neutral-600">向密算平台发起数据流通请求</span>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">3</div>
+                    <span class="text-neutral-600">密算平台向数据提供方、使用方发送交互指令</span>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center mr-3">4</div>
+                    <span class="text-neutral-600">双方按指令选择密算云（集中式）或隐语终端（点对点）完成数据流通</span>
                   </div>
                 </div>
               </div>
@@ -538,88 +688,96 @@
     </section>
 
     <!-- 核心价值 -->
-    <section class="py-12 bg-gradient-to-br from-primary/10 to-secondary/10" id="core-value">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">四、"三统一"体系核心价值</h2>
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <p class="text-lg text-neutral-700 mb-6">
-              隐语"蚂蚁密算可信数据流通平台"通过"三统一"体系，实现与国家数据基础设施的深度融合，
-              突破数据流通的技术与合规壁垒，为数据要素跨域、跨行业安全流转提供支撑，
-              助力全国一体化数据要素市场培育与建设。
-            </p>
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-              <div class="text-center">
-                <i class="fa fa-shield text-3xl text-primary mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">技术突破</h3>
-                <p class="text-neutral-600 text-sm">突破数据流通的技术壁垒</p>
-              </div>
-              <div class="text-center">
-                <i class="fa fa-balance-scale text-3xl text-success mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">合规保障</h3>
-                <p class="text-neutral-600 text-sm">确保数据流通合规安全</p>
-              </div>
-              <div class="text-center">
-                <i class="fa fa-chart-line text-3xl text-warning mb-4"></i>
-                <h3 class="font-semibold text-neutral-900 mb-2">市场培育</h3>
-                <p class="text-neutral-600 text-sm">助力数据要素市场建设</p>
-              </div>
+    <section class="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">"三统一"体系核心价值</h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">隐语"蚂蚁密算可信数据流通平台"通过"三统一"体系，实现与国家数据基础设施的深度融合</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg p-8 shadow-sm card-hover fade-in stagger-delay-1">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-shield text-primary text-2xl"></i>
             </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">技术突破</h3>
+            <p class="text-neutral-600">突破数据流通的技术壁垒，为数据要素跨域、跨行业安全流转提供支撑</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-8 shadow-sm card-hover fade-in stagger-delay-2">
+            <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-balance-scale text-success text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">合规保障</h3>
+            <p class="text-neutral-600">确保数据流通合规安全，遵循国家数据基础设施标准要求</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-8 shadow-sm card-hover fade-in stagger-delay-3">
+            <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-chart-line text-warning text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">市场培育</h3>
+            <p class="text-neutral-600">助力全国一体化数据要素市场培育与建设，推动数据经济发展</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 文档辅助功能 -->
-    <section class="py-12 bg-white" id="support-functions">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-neutral-900 mb-8 section-anchor">五、文档辅助功能</h2>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-neutral-50 rounded-lg p-6">
-              <h3 class="font-semibold text-neutral-800 mb-4 flex items-center">
-                <i class="fa fa-compass mr-2 text-primary"></i>
-                章节导航
-              </h3>
-              <ul class="space-y-2 text-neutral-600">
-                <li>• 支持跳转至"整体概述"</li>
-                <li>• "统一身份登记"</li>
-                <li>• "统一目录标识"</li>
-                <li>• "统一接口要求"</li>
-                <li>• "上一页（数据元件）"</li>
-              </ul>
+    <!-- 资源与支持 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">资源与支持</h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">获取更多技术资源、文档支持和社区帮助</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-lg p-6 shadow-sm card-hover fade-in stagger-delay-1">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-compass text-primary text-2xl"></i>
             </div>
-            <div class="bg-neutral-50 rounded-lg p-6">
-              <h3 class="font-semibold text-neutral-800 mb-4 flex items-center">
-                <i class="fa fa-life-ring mr-2 text-success"></i>
-                资源与联系
-              </h3>
-              <ul class="space-y-2 text-neutral-600">
-                <li>• 最新动态</li>
-                <li>• GitHub</li>
-                <li>• 培训与课程</li>
-                <li>• 社区活动</li>
-                <li>• 商务咨询</li>
-                <li>• 合作咨询</li>
-              </ul>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">快速导航</h3>
+            <div class="space-y-3">
+              <a href="#" class="block text-neutral-600 hover:text-primary transition-colors">• 核心概念与价值</a>
+              <a href="#" class="block text-neutral-600 hover:text-primary transition-colors">• 统一身份登记体系</a>
+              <a href="#" class="block text-neutral-600 hover:text-primary transition-colors">• 统一目录标识体系</a>
+              <a href="#" class="block text-neutral-600 hover:text-primary transition-colors">• 统一接口要求</a>
+              <a href="data-element.html" class="block text-primary font-semibold hover:text-primary/80 transition-colors">• 数据元件产品</a>
             </div>
           </div>
-          
-          <!-- 反馈入口 -->
-          <div class="mt-8 bg-primary/5 rounded-lg p-6">
-            <h3 class="font-semibold text-neutral-800 mb-4 flex items-center">
-              <i class="fa fa-commenting mr-2 text-warning"></i>
-              反馈入口
-            </h3>
-            <p class="text-neutral-600 mb-4">页面底部提供"页面对您是否有帮助"二元反馈选项（是/否），用于文档优化</p>
-            <div class="flex space-x-4">
-              <button class="px-4 py-2 bg-success text-white rounded-lg hover:bg-success/90 transition-colors">
-                <i class="fa fa-thumbs-up mr-2"></i>是
-              </button>
-              <button class="px-4 py-2 bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors">
-                <i class="fa fa-thumbs-down mr-2"></i>否
-              </button>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm card-hover fade-in stagger-delay-2">
+            <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-life-ring text-success text-2xl"></i>
             </div>
+            <h3 class="text-xl font-bold mb-4 text-neutral-800">技术支持</h3>
+            <div class="space-y-3">
+              <div class="text-neutral-600">• 技术文档与API</div>
+              <div class="text-neutral-600">• GitHub开源项目</div>
+              <div class="text-neutral-600">• 培训课程与认证</div>
+              <div class="text-neutral-600">• 社区论坛与活动</div>
+              <div class="text-neutral-600">• 商务合作咨询</div>
+              <div class="text-neutral-600">• 技术支持服务</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 反馈入口 -->
+        <div class="mt-12 bg-white rounded-lg p-8 shadow-sm fade-in stagger-delay-3">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-commenting text-warning text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-neutral-800">页面反馈</h3>
+            <p class="text-neutral-600">您的反馈将帮助我们持续改进文档质量</p>
+          </div>
+          <div class="flex justify-center space-x-4">
+            <button class="px-6 py-3 bg-success text-white rounded-lg hover:bg-success/90 transition-colors flex items-center">
+              <i class="fa fa-thumbs-up mr-2"></i>内容有帮助
+            </button>
+            <button class="px-6 py-3 bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors flex items-center">
+              <i class="fa fa-thumbs-down mr-2"></i>需要改进
+            </button>
           </div>
         </div>
       </div>
@@ -627,21 +785,51 @@
   </main>
 
   <!-- 页脚 -->
-  <footer class="bg-neutral-900 text-neutral-300 py-12">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div class="flex items-center mb-4 md:mb-0">
-            <i class="fa fa-shield text-primary text-2xl mr-2"></i>
-            <span class="text-xl font-semibold text-white">蚂蚁密算</span>
+  <footer class="bg-neutral-800 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-lg">A</span>
+            </div>
+            <span class="text-xl font-bold">蚂蚁密算</span>
           </div>
-          <div class="text-sm">
-            ©2025 Ant Group Co., Ltd.，备案号：浙ICP备2024111579号-5
-          </div>
+          <p class="text-neutral-400">基于隐私计算技术，构建可信数据流通基础设施</p>
         </div>
-        <div class="border-t border-neutral-700 pt-8 text-center text-sm">
-          <p>隐语SecretFlow数据基础设施"三统一"技术文档 - 规范优化版</p>
+        
+        <div>
+          <h4 class="font-semibold mb-4">产品与服务</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li><a href="trusted-data-space.html" class="hover:text-white transition-colors">可信数据空间</a></li>
+            <li><a href="data-element.html" class="hover:text-white transition-colors">数据元件</a></li>
+            <li><a href="#big-data-platform" class="hover:text-white transition-colors">大数据密算平台</a></li>
+            <li><a href="#ai-platform" class="hover:text-white transition-colors">大模型密算平台</a></li>
+          </ul>
         </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">资源中心</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li><a href="#documentation" class="hover:text-white transition-colors">技术文档</a></li>
+            <li><a href="#api" class="hover:text-white transition-colors">API文档</a></li>
+            <li><a href="#case-studies" class="hover:text-white transition-colors">案例研究</a></li>
+            <li><a href="#blog" class="hover:text-white transition-colors">技术博客</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">联系我们</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li>技术支持：support@antsecret.com</li>
+            <li>商务合作：business@antsecret.com</li>
+            <li>联系电话：400-123-4567</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-neutral-700 mt-8 pt-8 text-center text-neutral-400">
+        <p>© 2024 蚂蚁密算. 保留所有权利. 文档版本：V2.0（2024-10-28）</p>
       </div>
     </div>
   </footer>
