@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大数据密算平台 - 蚂蚁密算</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36CFC9',
+            success: '#52C41A',
+            warning: '#FAAD14',
+            danger: '#FF4D4F',
+            neutral: {
+              100: '#F5F5F5',
+              200: '#E5E5E5',
+              300: '#D4D4D4',
+              400: '#A3A3A3',
+              500: '#737373',
+              600: '#525252',
+              700: '#404040',
+              800: '#262626',
+              900: '#171717',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .nav-link {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .nav-link:hover {
+        color: #165DFF;
+      }
+      .nav-link.active {
+        color: #165DFF;
+        font-weight: 600;
+      }
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+      }
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .stagger-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .stagger-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .stagger-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .stagger-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .stagger-delay-5 {
+        transition-delay: 0.5s;
+      }
+      .code-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 16px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+      }
+      .table-container {
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+      .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .table-container th {
+        background: #f8f9fa;
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+      }
+      .table-container td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .table-container tr:hover {
+        background: #f8f9fa;
+      }
+      .architecture-diagram {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        padding: 24px;
+        position: relative;
+      }
+      .architecture-layer {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #165DFF;
+      }
+      .value-card {
+        background: linear-gradient(135deg, #165DFF 0%, #36CFC9 100%);
+        color: white;
+        border-radius: 12px;
+        padding: 24px;
+        text-align: center;
+      }
+      .timeline {
+        position: relative;
+        padding-left: 30px;
+      }
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #165DFF;
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+      }
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #165DFF;
+        border: 3px solid white;
+        box-shadow: 0 0 0 3px #165DFF;
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100">
+  <!-- 顶部导航栏 -->
+  <header class="sticky top-0 z-50 bg-white shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html" class="text-xl font-semibold text-primary">蚂蚁密算</a>
+        </div>
+
+        <!-- 桌面端导航 -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          <!-- 产品与服务 -->
+          <div class="dropdown relative">
+            <button class="nav-link flex items-center text-primary font-semibold">
+              产品与服务
+              <i class="fa fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <div class="px-4 py-2 text-xs text-neutral-500 font-medium">产品</div>
+              <a href="trusted-data-space.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
+                <i class="fa fa-database mr-2 text-primary"></i>可信数据空间
+              </a>
+              <a href="big-data-platform.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-primary font-semibold">
+                <i class="fa fa-cloud mr-2 text-success"></i>大数据密算平台
+              </a>
+              <a href="#ai-platform" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-robot mr-2 text-warning"></i>大模型密算平台
+              </a>
+              <a href="#secretflow-standard" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-shield mr-2 text-danger"></i>隐语标准版
+              </a>
+              
+              <div class="border-t border-neutral-200 mt-2 pt-2">
+                <div class="px-4 py-2 text-xs text-neutral-500 font-medium">服务</div>
+                <a href="data-element.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
+                  <i class="fa fa-cube mr-2 text-secondary"></i>数据元件服务
+                </a>
+                <a href="data-infrastructure-three-unified.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
+                  <i class="fa fa-server mr-2 text-info"></i>数据基础设施"三统一"
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 解决方案 -->
+          <div class="dropdown relative">
+            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
+              解决方案
+              <i class="fa fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <a href="#finance" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-bank mr-2 text-primary"></i>金融行业
+              </a>
+              <a href="#healthcare" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-heart mr-2 text-danger"></i>医疗健康
+              </a>
+              <a href="#government" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-building mr-2 text-warning"></i>政务治理
+              </a>
+              <a href="#internet" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">
+                <i class="fa fa-globe mr-2 text-success"></i>互联网服务
+              </a>
+            </div>
+          </div>
+
+          <!-- 开源平台 -->
+          <a href="#opensource" class="nav-link text-neutral-600 hover:text-primary">开源平台</a>
+
+          <!-- 生态与社区 -->
+          <a href="#ecosystem" class="nav-link text-neutral-600 hover:text-primary">生态与社区</a>
+
+          <!-- 资源中心 -->
+          <div class="dropdown relative">
+            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
+              资源中心
+              <i class="fa fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div class="dropdown-menu absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+              <a href="#getting-started" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">入门指南</a>
+              <a href="#api-docs" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">API文档</a>
+              <a href="#tutorials" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">技术教程</a>
+              <a href="#best-practices" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">最佳实践</a>
+              <a href="#demo" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">DEMO演示</a>
+              <a href="#training" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600 building-item">培训课程</a>
+              <div class="border-t border-neutral-200 mt-2 pt-2">
+                <a href="#all-resources" class="block px-4 py-2 text-sm text-primary hover:bg-neutral-50">
+                  <i class="fa fa-book mr-2"></i>资源中心
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 关于我们 -->
+          <a href="#about" class="nav-link text-neutral-600 hover:text-primary">关于我们</a>
+        </nav>
+
+        <!-- 用户操作区域 -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <a href="#login" class="text-neutral-600 hover:text-primary nav-link">登录</a>
+          <a href="#register" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+            免费注册
+          </a>
+        </div>
+
+        <!-- 移动端菜单按钮 -->
+        <button id="mobile-menu-button" class="lg:hidden text-neutral-600 hover:text-primary">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面内容 -->
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-primary/80 py-20 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 fade-in">大数据密算平台</h1>
+        <p class="text-xl opacity-90 max-w-3xl mx-auto fade-in stagger-delay-1">基于机密计算技术体系，为高敏感数据提供全链路安全保障，实现"存储密态化→计算密态化→服务密态化"</p>
+        <div class="mt-8 fade-in stagger-delay-2">
+          <span class="inline-block bg-white/20 px-4 py-2 rounded-full text-sm font-medium">符合GB/T 45230-2025国家标准</span>
+          <span class="inline-block bg-white/20 px-4 py-2 rounded-full text-sm font-medium ml-2">TEE+MPC+联邦学习融合</span>
+          <span class="inline-block bg-white/20 px-4 py-2 rounded-full text-sm font-medium ml-2">全链路零泄密保障</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行业痛点 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">行业痛点分析</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">当前公共数据授权运营面临的核心挑战与安全风险</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl p-8 card-hover border border-neutral-100 fade-in stagger-delay-1">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-danger/10 rounded-xl flex items-center justify-center mr-4">
+                <i class="fa fa-exclamation-triangle text-danger text-xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-neutral-800">高敏感数据安全风险</h3>
+            </div>
+            <p class="text-neutral-700 leading-relaxed mb-4">当前公共数据授权运营过程中数据流通均为明文数据，导致高敏感高价值数据无法开放，存在严重的数据泄露风险。</p>
+            <div class="bg-danger/5 rounded-lg p-4">
+              <h4 class="font-semibold text-danger text-sm mb-2">安全影响</h4>
+              <p class="text-neutral-600 text-sm">数据泄露风险高，合规成本大幅增加，数据价值无法充分释放</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-8 card-hover border border-neutral-100 fade-in stagger-delay-2">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-warning/10 rounded-xl flex items-center justify-center mr-4">
+                <i class="fa fa-shield-alt text-warning text-xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-neutral-800">授权管控缺失</h3>
+            </div>
+            <p class="text-neutral-700 leading-relaxed mb-4">公共数据授权运营无法按照数源单位授权意愿进行授权加工和使用，存在数据被非预期使用的合规风险。</p>
+            <div class="bg-warning/5 rounded-lg p-4">
+              <h4 class="font-semibold text-warning text-sm mb-2">合规挑战</h4>
+              <p class="text-neutral-600 text-sm">授权粒度粗放，使用范围难以控制，数据滥用风险高</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心价值主张 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">三大核心价值承诺</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">基于2024-2025年行业试点实测数据，平台核心价值聚焦"安全、效率、成本"三大维度</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="value-card card-hover fade-in stagger-delay-1">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+              <i class="fa fa-shield text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">安全承诺：全链路零泄密</h3>
+            <p class="text-white/90 mb-4">输入-计算-输出全程加密，破解成本超10亿美元</p>
+            <div class="bg-white/20 rounded px-3 py-1 inline-block">
+              <span class="text-sm font-medium">18个月零数据泄露</span>
+            </div>
+          </div>
+
+          <div class="value-card card-hover fade-in stagger-delay-2">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+              <i class="fa fa-bolt text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">效率承诺：快于行业10倍</h3>
+            <p class="text-white/90 mb-4">100GB数据密态建模4小时，PB级数据分钟级处理</p>
+            <div class="bg-white/20 rounded px-3 py-1 inline-block">
+              <span class="text-sm font-medium">效率提升180倍</span>
+            </div>
+          </div>
+
+          <div class="value-card card-hover fade-in stagger-delay-3">
+            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+              <i class="fa fa-dollar text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">成本承诺：整体成本直降60%</h3>
+            <p class="text-white/90 mb-4">通用服务器可用，中小客户年运维成本<5万元</p>
+            <div class="bg-white/20 rounded px-3 py-1 inline-block">
+              <span class="text-sm font-medium">成本降低68%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 解决方案 -->
+    <section class="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">平台解决方案</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">基于密态计算技术和使用权跨域管控理念，提供大数据密算平台，保证数据流转全过程的安全</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white rounded-2xl p-8 card-hover border border-neutral-100 fade-in">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center mr-6">
+                <i class="fa fa-cogs text-white text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-neutral-800 mb-2">密态计算技术体系</h3>
+                <p class="text-primary font-semibold">实现数据"可用不可见"的安全流通</p>
+              </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-primary/5 rounded-xl p-6">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                    <i class="fa fa-lock text-white text-sm"></i>
+                  </div>
+                  <h4 class="font-semibold text-primary">全链路加密保障</h4>
+                </div>
+                <p class="text-neutral-700 text-sm">从数据输入到计算输出全程加密，确保数据在流转过程中始终处于密态保护</p>
+              </div>
+              
+              <div class="bg-secondary/5 rounded-xl p-6">
+                <div class="flex items-center mb-3">
+                  <div class="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center mr-3">
+                    <i class="fa fa-shield-alt text-white text-sm"></i>
+                  </div>
+                  <h4 class="font-semibold text-secondary">使用权跨域管控</h4>
+                </div>
+                <p class="text-neutral-700 text-sm">基于区块链技术实现数据使用权的精细化管控，确保数据按授权意愿使用</p>
+              </div>
+            </div>
+            
+            <div class="mt-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-6">
+              <h4 class="font-semibold text-primary mb-3">核心价值</h4>
+              <p class="text-neutral-700">通过密态计算技术，在保证数据安全的前提下，实现高敏感数据的价值释放和合规流通，为公共数据授权运营提供安全可靠的技术支撑。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心技术架构 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">四层密态防护架构</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">遵循"全链路无死角加密"原则，每层均实现技术与合规的深度绑定</p>
+        </div>
+
+        <div class="architecture-diagram fade-in">
+          <div class="architecture-layer">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3">
+                <i class="fa fa-database text-white text-sm"></i>
+              </div>
+              <h3 class="text-xl font-bold text-primary">密态存储层</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-primary/5 rounded p-3">
+                <h4 class="font-semibold text-primary mb-1">核心技术能力</h4>
+                <p class="text-sm text-neutral-600">支持国密SM4/SM9算法加密存储，适配HDFS、S3等通用存储协议</p>
+              </div>
+              <div class="bg-success/5 rounded p-3">
+                <h4 class="font-semibold text-success mb-1">安全保障机制</h4>
+                <p class="text-sm text-neutral-600">密钥全生命周期管理（每小时自动轮换），存储节点物理隔离</p>
+              </div>
+              <div class="bg-warning/5 rounded p-3">
+                <h4 class="font-semibold text-warning mb-1">行业优势</h4>
+                <p class="text-sm text-neutral-600">无需专用存储硬件，部署成本降低70%</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="architecture-layer">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center mr-3">
+                <i class="fa fa-cogs text-white text-sm"></i>
+              </div>
+              <h3 class="text-xl font-bold text-success">密态计算层</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-primary/5 rounded p-3">
+                <h4 class="font-semibold text-primary mb-1">核心技术能力</h4>
+                <p class="text-sm text-neutral-600">MPC+TEE混合架构，支持PB级数据分钟级处理</p>
+              </div>
+              <div class="bg-success/5 rounded p-3">
+                <h4 class="font-semibold text-success mb-1">安全保障机制</h4>
+                <p class="text-sm text-neutral-600">计算中间结果不落地，每步操作区块链存证</p>
+              </div>
+              <div class="bg-warning/5 rounded p-3">
+                <h4 class="font-semibold text-warning mb-1">行业优势</h4>
+                <p class="text-sm text-neutral-600">性能损耗控制在20%以内，算力利用率92%</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="architecture-layer">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-warning rounded-full flex items-center justify-center mr-3">
+                <i class="fa fa-laptop text-white text-sm"></i>
+              </div>
+              <h3 class="text-xl font-bold text-warning">密态研发层</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-primary/5 rounded p-3">
+                <h4 class="font-semibold text-primary mb-1">核心技术能力</h4>
+                <p class="text-sm text-neutral-600">提供"密算笔记本"工具，预置150+密态算法</p>
+              </div>
+              <div class="bg-success/5 rounded p-3">
+                <h4 class="font-semibold text-success mb-1">安全保障机制</h4>
+                <p class="text-sm text-neutral-600">研发过程无明文暴露，模型参数加密输出</p>
+              </div>
+              <div class="bg-warning/5 rounded p-3">
+                <h4 class="font-semibold text-warning mb-1">行业优势</h4>
+                <p class="text-sm text-neutral-600">开发者上手周期从3个月缩至7天</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="architecture-layer">
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 bg-danger rounded-full flex items-center justify-center mr-3">
+                <i class="fa fa-cloud text-white text-sm"></i>
+              </div>
+              <h3 class="text-xl font-bold text-danger">密态服务层</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-primary/5 rounded p-3">
+                <h4 class="font-semibold text-primary mb-1">核心技术能力</h4>
+                <p class="text-sm text-neutral-600">密态API输出，支持灰度发布、版本回滚</p>
+              </div>
+              <div class="bg-success/5 rounded p-3">
+                <h4 class="font-semibold text-success mb-1">安全保障机制</h4>
+                <p class="text-sm text-neutral-600">服务调用需双因素认证，异常调用实时预警</p>
+              </div>
+              <div class="bg-warning/5 rounded p-3">
+                <h4 class="font-semibold text-warning mb-1">行业优势</h4>
+                <p class="text-sm text-neutral-600">服务可用性达99.99%，支持每秒10万级API调用</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8 fade-in">
+          <p class="text-neutral-600">兼容Intel SGX、AMD SEV、华为鲲鹏可信计算等主流硬件架构，通用x86服务器即可部署</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 典型应用场景 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">典型行业应用场景</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">基于2024-2025年最新行业实践，平台已在多个关键领域实现规模化应用</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-primary/5 to-white rounded-lg p-6 card-hover fade-in stagger-delay-1">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4">
+              <i class="fa fa-university text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-neutral-800">金融行业：跨机构联合风控</h3>
+            <div class="space-y-3">
+              <div class="bg-primary/10 rounded p-3">
+                <h4 class="font-semibold text-primary text-sm mb-1">核心痛点</h4>
+                <p class="text-neutral-600 text-sm">银行与企业数据孤岛，联合风控模型准确率仅65%，建模周期72小时</p>
+              </div>
+              <div class="bg-success/10 rounded p-3">
+                <h4 class="font-semibold text-success text-sm mb-1">平台方案</h4>
+                <p class="text-neutral-600 text-sm">MPC+TEE混合架构，整合银行征信数据、企业工业数据</p>
+              </div>
+              <div class="bg-warning/10 rounded p-3">
+                <h4 class="font-semibold text-warning text-sm mb-1">落地效果</h4>
+                <p class="text-neutral-600 text-sm">模型准确率提升至85%，坏账率下降27%，审批时效从3天缩至2小时</p>
+              </div>
+            </div>
+            <div class="mt-4 bg-primary/10 rounded px-3 py-1 inline-block">
+              <span class="text-primary text-sm font-medium">案例：YY-Fin-202409</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-success/5 to-white rounded-lg p-6 card-hover fade-in stagger-delay-2">
+            <div class="w-16 h-16 bg-success rounded-lg flex items-center justify-center mb-4">
+              <i class="fa fa-building text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-neutral-800">政务行业：跨域数据协同统计</h3>
+            <div class="space-y-3">
+              <div class="bg-primary/10 rounded p-3">
+                <h4 class="font-semibold text-primary text-sm mb-1">核心痛点</h4>
+                <p class="text-neutral-600 text-sm">不同地市密算平台协议不兼容，跨区域统计需重复部署系统</p>
+              </div>
+              <div class="bg-success/10 rounded p-3">
+                <h4 class="font-semibold text-success text-sm mb-1">平台方案</h4>
+                <p class="text-neutral-600 text-sm">内置跨协议转换引擎，统一数据接入标准，计算操作区块链存证</p>
+              </div>
+              <div class="bg-warning/10 rounded p-3">
+                <h4 class="font-semibold text-warning text-sm mb-1">落地效果</h4>
+                <p class="text-neutral-600 text-sm">风险预警响应时间从72小时缩至15分钟，避免15亿元违约损失</p>
+              </div>
+            </div>
+            <div class="mt-4 bg-success/10 rounded px-3 py-1 inline-block">
+              <span class="text-success text-sm font-medium">案例：YY-Gov-202408</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-warning/5 to-white rounded-lg p-6 card-hover fade-in stagger-delay-3">
+            <div class="w-16 h-16 bg-warning rounded-lg flex items-center justify-center mb-4">
+              <i class="fa fa-hospital text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-neutral-800">医疗行业：多医院数据联合研发</h3>
+            <div class="space-y-3">
+              <div class="bg-primary/10 rounded p-3">
+                <h4 class="font-semibold text-primary text-sm mb-1">核心痛点</h4>
+                <p class="text-neutral-600 text-sm">医院间临床数据、影像数据无法共享，新药研发周期延长2-3年</p>
+              </div>
+              <div class="bg-success/10 rounded p-3">
+                <h4 class="font-semibold text-success text-sm mb-1">平台方案</h4>
+                <p class="text-neutral-600 text-sm">TEE密态环境下完成影像特征提取+联邦学习建模</p>
+              </div>
+              <div class="bg-warning/10 rounded p-3">
+                <h4 class="font-semibold text-warning text-sm mb-1">落地效果</h4>
+                <p class="text-neutral-600 text-sm">新药临床试验周期从5年缩至18个月，模型诊断准确率提升18%</p>
+              </div>
+            </div>
+            <div class="mt-4 bg-warning/10 rounded px-3 py-1 inline-block">
+              <span class="text-warning text-sm font-medium">案例：YY-Med-202408</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 方案效果 -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4">平台应用成效</h2>
+          <p class="text-xl opacity-90 max-w-2xl mx-auto">基于实际应用数据，平台已在多个行业实现规模化应用，释放公共数据价值</p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center fade-in stagger-delay-1">
+            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-database text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-bold mb-2">1000+</div>
+            <div class="text-white/90">高敏感数据表通过密态计算开放</div>
+          </div>
+
+          <div class="text-center fade-in stagger-delay-2">
+            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-cube text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-bold mb-2">30+</div>
+            <div class="text-white/90">对外提供数据产品</div>
+          </div>
+
+          <div class="text-center fade-in stagger-delay-3">
+            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-industry text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-bold mb-2">5+</div>
+            <div class="text-white/90">业务场景覆盖</div>
+          </div>
+
+          <div class="text-center fade-in stagger-delay-4">
+            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-chart-line text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-bold mb-2">显著</div>
+            <div class="text-white/90">助力企业发展</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 fade-in">
+            <h3 class="text-2xl font-bold mb-4 text-center">核心价值体现</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white/5 rounded-xl p-4">
+                <h4 class="font-semibold mb-2">数据价值释放</h4>
+                <p class="text-white/90 text-sm">通过密态计算技术，让高敏感数据在安全合规的前提下实现价值流通，为企业发展提供数据支撑</p>
+              </div>
+              <div class="bg-white/5 rounded-xl p-4">
+                <h4 class="font-semibold mb-2">业务创新驱动</h4>
+                <p class="text-white/90 text-sm">覆盖金融、政务、医疗等多个业务场景，推动行业数字化转型和业务模式创新</p>
+              </div>
+            </div>
+            <div class="mt-6 text-center">
+              <p class="text-white/90">平台已成功助力企业实现数据驱动的业务增长，为公共数据授权运营树立了行业标杆</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 合规与安全保障 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">合规与安全保障</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">符合2025年最新国家标准，构建全方位安全防护体系</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+          <div class="fade-in stagger-delay-1">
+            <h3 class="text-2xl font-bold mb-6 text-neutral-800">合规覆盖范围</h3>
+            <div class="space-y-4">
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-primary mb-2">国家标准</h4>
+                <p class="text-neutral-600">GB/T 45230-2025《数据安全技术 机密计算通用框架》、GB/T 35273-2020《个人信息安全规范》</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-success mb-2">行业标准</h4>
+                <p class="text-neutral-600">《金融数据安全分级指南》《医疗数据安全指南》《政务数据开放共享管理办法》</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-warning mb-2">认证资质</h4>
+                <p class="text-neutral-600">等保三级认证、国密GM/T 0099-2024认证、ISO 27001信息安全管理体系认证</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-in stagger-delay-2">
+            <h3 class="text-2xl font-bold mb-6 text-neutral-800">安全防护机制</h3>
+            <div class="space-y-4">
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-primary mb-2">身份认证</h4>
+                <p class="text-neutral-600">支持多因素认证（MFA）、基于角色的访问控制（RBAC）</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-success mb-2">操作审计</h4>
+                <p class="text-neutral-600">全链路日志留存≥6个月，区块链存证防篡改，审计报告自动生成</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h4 class="font-semibold text-warning mb-2">应急响应</h4>
+                <p class="text-neutral-600">7×24小时安全监控，异常事件15分钟内预警，故障恢复时间<1小时</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 用户服务与生态支持 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">用户服务与生态支持</h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">提供分层服务体系与完善的开发者支持</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+          <div class="fade-in stagger-delay-1">
+            <h3 class="text-2xl font-bold mb-6 text-neutral-800">分层服务体系</h3>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>服务等级</th>
+                    <th>服务内容</th>
+                    <th>响应时效</th>
+                    <th>适用客户</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>基础服务</strong></td>
+                    <td>文档咨询、在线客服、版本更新</td>
+                    <td>2个工作日内</td>
+                    <td>试用客户、中小微企业</td>
+                  </tr>
+                  <tr>
+                    <td><strong>企业服务</strong></td>
+                    <td>远程部署协助、月度巡检、技术培训</td>
+                    <td>4小时内（工作时间）</td>
+                    <td>中型企业、区域政务客户</td>
+                  </tr>
+                  <tr>
+                    <td><strong>尊享服务</strong></td>
+                    <td>7×24小时现场支持、定制开发协助、专属技术顾问</td>
+                    <td>1小时内（含节假日）</td>
+                    <td>大型金融机构、三甲医院</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="fade-in stagger-delay-2">
+            <h3 class="text-2xl font-bold mb-6 text-neutral-800">开发者支持</h3>
+            <div class="space-y-4">
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="font-semibold text-primary mb-2">工具链</h4>
+                <p class="text-neutral-600">提供SDK（Python/Java/Go）、密算笔记本、API测试平台，支持Docker-compose一键部署</p>
+              </div>
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="font-semibold text-success mb-2">学习资源</h4>
+                <p class="text-neutral-600">"7天密算开发实战"视频课程、100+场景化代码示例、社区论坛（工作日2小时内响应）</p>
+              </div>
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="font-semibold text-warning mb-2">共建计划</h4>
+                <p class="text-neutral-600">开放"密态算法共建平台"，联合高校、企业研发行业定制算法</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4 fade-in">立即体验大数据密算平台</h2>
+        <p class="text-xl opacity-90 max-w-2xl mx-auto mb-8 fade-in stagger-delay-1">打破数据孤岛，实现安全高效的数据协同计算</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in stagger-delay-2">
+          <a href="#demo" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-neutral-100 transition-colors">
+            申请演示
+          </a>
+          <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+            联系我们
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-neutral-800 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-lg">A</span>
+            </div>
+            <span class="text-xl font-bold">蚂蚁密算</span>
+          </div>
+          <p class="text-neutral-400">基于隐私计算技术，构建可信数据流通基础设施</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">产品与服务</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li><a href="trusted-data-space.html" class="hover:text-white transition-colors">可信数据空间</a></li>
+            <li><a href="big-data-platform.html" class="hover:text-white transition-colors">大数据密算平台</a></li>
+            <li><a href="#ai-platform" class="hover:text-white transition-colors">大模型密算平台</a></li>
+            <li><a href="data-element.html" class="hover:text-white transition-colors">数据元件服务</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">资源中心</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li><a href="#documentation" class="hover:text-white transition-colors">技术文档</a></li>
+            <li><a href="#api" class="hover:text-white transition-colors">API文档</a></li>
+            <li><a href="#case-studies" class="hover:text-white transition-colors">案例研究</a></li>
+            <li><a href="#blog" class="hover:text-white transition-colors">技术博客</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">联系我们</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li>技术支持：support@antsecret.com</li>
+            <li>商务合作：business@antsecret.com</li>
+            <li>联系电话：400-123-4567</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-neutral-700 mt-8 pt-8 text-center text-neutral-400">
+        <p>© 2024 蚂蚁密算. 保留所有权利. 文档版本：V2.0（2024-10-28）</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 页面加载动画
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      fadeElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>
