@@ -182,31 +182,28 @@
         <nav class="hidden lg:flex items-center space-x-8">
           <!-- 产品与服务 -->
           <div class="dropdown relative">
-            <button class="nav-link flex items-center text-neutral-600 hover:text-primary">
+            <button class="nav-link flex items-center text-primary font-semibold">
               产品与服务
               <i class="fa fa-chevron-down ml-1 text-xs"></i>
             </button>
             <div class="dropdown-menu absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
               <div class="px-4 py-2 text-xs text-neutral-500 font-medium">产品</div>
-              <a href="trusted-data-space.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
-                <i class="fa fa-database mr-2 text-primary"></i>可信数据空间
+              <a href="隐语标准版.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
+                <i class="fa fa-code mr-2 text-primary"></i>SecretFlow
               </a>
-              <a href="data-element.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
-                <i class="fa fa-cube mr-2 text-info"></i>数据元件
+              <a href="trusted-data-space.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
+                <i class="fa fa-database mr-2 text-primary"></i>可信数据空间
               </a>
               <a href="big-data-platform.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
                 <i class="fa fa-cloud mr-2 text-success"></i>大数据密算平台
               </a>
               <a href="big-model-platform.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
-                <i class="fa fa-robot mr-2 text-warning"></i>大模型密算平台
-              </a>
-              <a href="product/隐语标准版.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
-                <i class="fa fa-shield mr-2 text-danger"></i>隐语标准版
+                <i class="fa fa-brain mr-2 text-warning"></i>大模型密算平台
               </a>
               
               <div class="border-t border-neutral-200 mt-2 pt-2">
                 <div class="px-4 py-2 text-xs text-neutral-500 font-medium">服务</div>
-                <a href="data-element.html" class="block px-4 py-2 text-sm hover:bg-neutral-50">
+                <a href="data-element.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-neutral-600">
                   <i class="fa fa-cube mr-2 text-secondary"></i>数据元件服务
                 </a>
                 <a href="data-infrastructure-three-unified.html" class="block px-4 py-2 text-sm hover:bg-neutral-50 text-primary font-semibold">
@@ -871,13 +868,27 @@
         });
       });
 
-      // 移动端菜单功能（简化版）
-      const menuToggle = document.querySelector('.lg-hidden');
-      if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-          alert('移动端菜单功能需要进一步开发');
+      // 移动端菜单切换
+      document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        
+        // 切换图标
+        const icon = this.querySelector('i');
+        if (menu.classList.contains('hidden')) {
+          icon.className = 'fa fa-bars text-xl';
+        } else {
+          icon.className = 'fa fa-times text-xl';
+        }
+      });
+
+      // 点击移动端菜单链接后关闭菜单
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+          document.getElementById('mobile-menu').classList.add('hidden');
+          document.getElementById('mobile-menu-button').querySelector('i').className = 'fa fa-bars text-xl';
         });
-      }
+      });
     });
   </script>
 </body>
